@@ -8,7 +8,7 @@ full_seconds = 0
 class StopwatchWindow(QMainWindow):
     def __init__(self, full_seconds):
         super().__init__()
-        self.setWindowTitle("Stopwatch")
+        self.setWindowTitle(f"Stopwatch")
 
         app.setStyleSheet(custom_stylesheet_default) #comment to use a default white theme
 
@@ -47,11 +47,13 @@ class StopwatchWindow(QMainWindow):
         self.timer.stop()
         self.full_seconds = 0
         self.label.setText("0:00:00")
+        self.setWindowTitle(f"Stopwatch")
 
     def update_timer(self):
         self.full_seconds += 1
         timerApp = datetime.timedelta(seconds=self.full_seconds)
         self.label.setText(str(timerApp))
+        self.setWindowTitle(f"Stopwatch: {self.full_seconds} seconds")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
