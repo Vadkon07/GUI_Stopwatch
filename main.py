@@ -10,7 +10,7 @@ class StopwatchWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Stopwatch")
 
-        app.setStyleSheet(custom_stylesheet_default)
+        app.setStyleSheet(custom_stylesheet_default) #comment to use a default white theme
 
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
@@ -19,15 +19,17 @@ class StopwatchWindow(QMainWindow):
         self.label = QLabel(f"{full_seconds}", alignment=Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.label)
 
-        start_button = QPushButton("Start") #white
+        start_button = QPushButton("Start")
         start_button.clicked.connect(self.start_timer)
         self.layout.addWidget(start_button)
 
-        pause_button = QPushButton("Pause") #blue
+        pause_button = QPushButton("Pause")
+        pause_button.setStyleSheet("background-color: blue")
         pause_button.clicked.connect(self.pause_timer)
         self.layout.addWidget(pause_button)
 
-        reset_button = QPushButton("Reset") #red
+        reset_button = QPushButton("Reset")
+        reset_button.setStyleSheet("background-color: red")
         reset_button.clicked.connect(self.reset_timer)
         self.layout.addWidget(reset_button)
 
