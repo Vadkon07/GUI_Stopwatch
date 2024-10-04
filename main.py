@@ -63,34 +63,15 @@ QWidget {
     background-color: black;
     color: white;
 }
-QLineEdit {
-    background-color: pink;
-    color: black;
-}
 QLine {
     color: grey;
 }
 QPushButton {
-    background-color: grey;  /* Red buttons */
-    color: white;  /* Text color */
+    background-color: grey;
+    color: white;
 }
 QPushButton:hover {
     background-color: #cc0000;  /* Darker red on hover
-}
-QMenu {
-    background-color: #1a1a1a;
-    color: black;
-}
-QMenu::item {
-    background-color: grey;
-    color: black;
-}
-QProgressBar {
-    border: 2px solid grey;
-    text-align: center;
-}
-QProgressBar::chunk {
-    background-color: red;
 }
 """
 
