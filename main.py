@@ -16,7 +16,7 @@ class StopwatchWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
 
         self.layout = QVBoxLayout(self.central_widget)
-        self.label = QLabel(f"{full_seconds}", alignment=Qt.AlignmentFlag.AlignCenter)
+        self.label = QLabel(f"00:00:00", alignment=Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.label)
 
         start_button = QPushButton("Start")
