@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QMainWindow, QPushButton
-from PyQt6.QtCore import Qt, QTimer
+from PyQt6.QtCore import Qt, QTimer, QSize
 from PyQt6.QtGui import QFont
 import datetime
 
@@ -11,7 +11,7 @@ class StopwatchWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle(f"Stopwatch")
 
-        #app.setStyleSheet(custom_stylesheet_default) #comment to use a default white theme
+        self.theme = 1
 
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
@@ -19,6 +19,13 @@ class StopwatchWindow(QMainWindow):
         font = QFont("Arial", 20, QFont.Weight.Bold)
 
         self.layout = QVBoxLayout(self.central_widget)
+
+        self.switch_theme = QPushButton("T")
+        self.switch_theme.setFlat(True)
+        self.switch_theme.setFixedSize(QSize(10, 10))
+        self.switch_theme.clicked.connect(self.change_theme)
+        self.layout.addWidget(self.switch_theme)
+
         self.label = QLabel(f"00:00:00", alignment=Qt.AlignmentFlag.AlignCenter)
         self.label.setFont(font)
         self.layout.addWidget(self.label)
@@ -36,7 +43,7 @@ class StopwatchWindow(QMainWindow):
         self.reset_button = QPushButton("Reset")
         self.reset_button.setStyleSheet("background-color: red")
         self.reset_button.clicked.connect(self.reset_timer)
-        self.layout.addWidget(self. reset_button)
+        self.layout.addWidget(self.reset_button)
         self.reset_button.hide()
 
         self.full_seconds = full_seconds
@@ -68,10 +75,18 @@ class StopwatchWindow(QMainWindow):
         self.label.setText(str(timerApp))
         self.setWindowTitle(f"Stopwatch: {self.full_seconds} seconds")
 
+    def change_theme(self):
+        if self.theme == 1:
+            app.setStyleSheet(custom_stylesheet_black)
+            self.theme = 2
+        elif self.theme == 2:
+            app.setStyleSheet(custom_stylesheet_white)
+            self.theme = 1
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    custom_stylesheet_default = """
+    custom_stylesheet_black = """
 QWidget {
     background-color: black;
     color: white;
@@ -81,8 +96,23 @@ QPushButton {
     color: white;
 }
 QPushButton:hover {
-    background-color: lime;}
+    background-color: lime;
+}
 
+"""
+
+    custom_stylesheet_white = """
+QWidget {
+    background-color: white;
+    color: black;
+}
+QPushButton {
+    background-color: grey;
+    color: white;
+}
+QPushButton:hover {
+    background-color: lime;
+}
 """
 
     window = StopwatchWindow(full_seconds)
