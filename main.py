@@ -39,6 +39,7 @@ class StopwatchWindow(QMainWindow):
         self.pause_button.setFlat(True)
         self.pause_button.setStyleSheet("background-color: blue")
         self.pause_button.clicked.connect(self.pause_timer)
+
         self.layout.addWidget(self.pause_button)
         self.pause_button.hide()
 
@@ -108,7 +109,7 @@ QWidget {
     color: black;
 }
 QPushButton {
-    color: white;
+    color: black;
 }
 QPushButton:hover {
     background-color: grey;
