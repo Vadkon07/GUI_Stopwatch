@@ -31,17 +31,19 @@ class StopwatchWindow(QMainWindow):
         self.layout.addWidget(self.label)
 
         self.start_button = QPushButton("Start")
+        self.start_button.setFlat(True)
         self.start_button.clicked.connect(self.start_timer)
         self.layout.addWidget(self.start_button)
 
         self.pause_button = QPushButton("Pause")
+        self.pause_button.setFlat(True)
         self.pause_button.setStyleSheet("background-color: blue")
         self.pause_button.clicked.connect(self.pause_timer)
         self.layout.addWidget(self.pause_button)
         self.pause_button.hide()
 
         self.reset_button = QPushButton("Reset")
-        self.reset_button.setStyleSheet("background-color: red")
+        self.reset_button.setStyleSheet("color: red")
         self.reset_button.clicked.connect(self.reset_timer)
         self.layout.addWidget(self.reset_button)
         self.reset_button.hide()
@@ -92,11 +94,10 @@ QWidget {
     color: white;
 }
 QPushButton {
-    background-color: grey;
     color: white;
 }
 QPushButton:hover {
-    background-color: lime;
+    background-color: grey;
 }
 
 """
@@ -107,11 +108,10 @@ QWidget {
     color: black;
 }
 QPushButton {
-    background-color: grey;
     color: white;
 }
 QPushButton:hover {
-    background-color: lime;
+    background-color: grey;
 }
 """
 
