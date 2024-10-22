@@ -18,6 +18,7 @@ class StopwatchWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
 
         font = QFont("Arial", 20, QFont.Weight.Bold)
+        small_font = QFont("Arial", 12)
 
         self.layout = QVBoxLayout(self.central_widget)
 
@@ -89,10 +90,12 @@ class StopwatchWindow(QMainWindow):
         self.adjustSize()
 
     def loop_take(self):
+        small_font = QFont("Arial", 10)
         current_value = self.label.text()
         print(current_value)
         self.history = 0
         self.history_label = QLabel(current_value, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.history_label.setFont(small_font)
         self.layout.addWidget(self.history_label)
         self.history_labels.append(self.history_label)  # Add to the list
 
