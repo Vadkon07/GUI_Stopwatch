@@ -12,6 +12,7 @@ class StopwatchWindow(QMainWindow):
         self.setWindowTitle(f"Stopwatch")
 
         self.theme = 1
+        self.history_labels = []
 
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
@@ -39,9 +40,15 @@ class StopwatchWindow(QMainWindow):
         self.pause_button.setFlat(True)
         self.pause_button.setStyleSheet("background-color: blue")
         self.pause_button.clicked.connect(self.pause_timer)
-
         self.layout.addWidget(self.pause_button)
         self.pause_button.hide()
+
+        self.loop_button = QPushButton("Loop")
+        self.loop_button.setFlat(True)
+        self.loop_button.setStyleSheet("background-color: white")
+        self.loop_button.clicked.connect(self.loop_take)
+        self.layout.addWidget(self.loop_button)
+        self.loop_button.hide()
 
         self.reset_button = QPushButton("Reset")
         self.reset_button.setStyleSheet("color: red")
@@ -56,6 +63,7 @@ class StopwatchWindow(QMainWindow):
     def start_timer(self):
         self.timer.start(1000)
         self.pause_button.show()
+        self.loop_button.show()
         self.reset_button.hide()
         self.start_button.hide()
 
@@ -66,11 +74,31 @@ class StopwatchWindow(QMainWindow):
         self.start_button.show()
 
     def reset_timer(self):
+        self.history = 0
         self.timer.stop()
         self.full_seconds = 0
         self.label.setText("0:00:00")
-        self.setWindowTitle(f"Stopwatch")
+        self.setWindowTitle("Stopwatch")
         self.reset_button.hide()
+        
+        for label in self.history_labels:
+            label.hide()
+
+        self.history_labels.clear()
+
+        self.adjustSize()
+
+    def loop_take(self):
+        current_value = self.label.text()
+        print(current_value)
+        self.history = 0
+        self.history_label = QLabel(current_value, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.layout.addWidget(self.history_label)
+        self.history_labels.append(self.history_label)  # Add to the list
+
+    def show_loops():
+        print("SOON")
+
 
     def update_timer(self):
         self.full_seconds += 1
